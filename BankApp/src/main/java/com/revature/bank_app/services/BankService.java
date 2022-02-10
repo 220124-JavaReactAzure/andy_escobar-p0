@@ -72,8 +72,6 @@ public class BankService {
 		return null;
 	}
 
-
-
 	public void updateBank(Bank newBank) {
 		newBank.setCreator(userService.getSessionUser());
 		

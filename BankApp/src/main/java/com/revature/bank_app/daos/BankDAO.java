@@ -87,14 +87,14 @@ public class BankDAO implements CrudDAO<Bank> {
 	
 
 	//updating bank account balance
-	public boolean update(Double updateBalance, String BankId) {
+	public boolean update(Double updateBalance, String creatorId) {
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()){
-			String sql = "update bank set bank_balance = ? where bank_id = ?";
+			String sql = "update bank set bank_balance = ? where creator_id = ?";
 			
 			PreparedStatement ps = conn.prepareStatement(sql);
 			
 			ps.setDouble(1,  updateBalance);
-			ps.setString(2, BankId);
+			ps.setString(2, creatorId);
 			
 			
 			int rU = ps.executeUpdate();
@@ -139,10 +139,12 @@ public class BankDAO implements CrudDAO<Bank> {
 
 	public double getBalance(String bankId) {
 		try(Connection conn = ConnectionFactory.getInstance().getConnection()){
-			String sql = "select bank_balance from bank where bank_id = ?";
+			String sql = "select * from bank where creator_id = ?";
 			
 			PreparedStatement ps = conn.prepareStatement(sql);
+			
 			ps.setString(1, bankId);
+			
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
@@ -150,6 +152,7 @@ public class BankDAO implements CrudDAO<Bank> {
 				
 				newBank.setBalance(rs.getDouble("bank_balance"));
 
+				
 				return newBank.getBalance();
 			}
 

@@ -3,6 +3,7 @@ package com.revature.bank_app.menus.dashboardMenus;
 import java.io.BufferedReader;
 
 import com.revature.bank_app.menus.Menu;
+import com.revature.bank_app.models.Bank;
 import com.revature.bank_app.models.User;
 import com.revature.bank_app.services.BankService;
 import com.revature.bank_app.services.UserService;
@@ -25,6 +26,7 @@ public class ViewMyBank extends Menu {
 	@Override
 	public void render() throws Exception {
 		// TODO Auto-generated method stub
+	
 		User sessionUser = userService.getSessionUser();
 		
 		double balance = bankService.getBalance(sessionUser.getUserId());
@@ -51,6 +53,7 @@ public class ViewMyBank extends Menu {
 		case "2":
 			System.out.println("How much would you like to withdrawal");
 			double withdrawAmount = Double.parseDouble(consoleReader.readLine());
+			
 			if(balance < withdrawAmount) {
 				System.out.println("Insuficient Funds:");
 			}else if(balance > withdrawAmount) {
