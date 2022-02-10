@@ -5,18 +5,20 @@ public class Bank {
 	private double balance;
 	private String userId;
 	private String type; //between debit or credit account
-		
+	private User creator;
+	
 	public Bank() {
 		super();
 	}
 	
-	public Bank(String bankId, double balance, String type, String userId) {
+	public Bank(String bankId, double balance, String type, String userId, User creator) {
 		// TODO Auto-generated constructor stub
 		super();
 		this.bankId = bankId;
 		this.balance = balance;
 		this.type = type;
 		this.userId = userId;
+		this.creator = creator;
 	}
 
 	public Bank(String type, double balance) {
@@ -24,9 +26,14 @@ public class Bank {
 		this.type = type;
 		this.balance = balance;
 	}
-
-	//auto generated getters and setters 
 	
+	public Bank(String type, double balance, User creator) {
+		super();
+		this.balance = balance;
+		this.type = type;
+		this.creator = creator;
+	}
+
 	//public void setUserId(int userId) {
 	//	this.userId = userId;
 	//}
@@ -60,23 +67,14 @@ public class Bank {
 	public void setType(String type) {
 		this.type = type;
 	}
-
-	//auto generated auto toString
 	
-	@Override
-	public String toString() {
-		return "Bank [id=" + bankId + ", balance=" + balance + ", userId=" + userId + ", type=" + type + "]";
+	public User getCreator() {
+		return creator;
 	}
 
-
-	public void getUserId(String userId) {
-		// TODO Auto-generated method stub
-		this.userId = userId;
+	public void setCreator(User creator) {
+		this.creator = creator;
 	}
 
-	public void setCreator(User sessionUser) {
-		// TODO Auto-generated method stub
-		
-	}
 		
 }

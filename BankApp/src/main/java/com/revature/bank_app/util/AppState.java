@@ -7,8 +7,9 @@ import com.revature.bank_app.util.loggin.Logger;
 import com.revature.bank_app.daos.BankDAO;
 import com.revature.bank_app.daos.UserDAO;
 import com.revature.bank_app.menus.dashboardMenus.BankCreationMenu;
-import com.revature.bank_app.menus.dashboardMenus.BankMenu;
+import com.revature.bank_app.menus.dashboardMenus.ProfileMenu;
 import com.revature.bank_app.menus.dashboardMenus.DashboardMenu;
+import com.revature.bank_app.menus.dashboardMenus.ViewMyBank;
 import com.revature.bank_app.menus.startPages.LoginMenu;
 import com.revature.bank_app.menus.startPages.RegisterMenu;
 import com.revature.bank_app.menus.startPages.WelcomeMenu;
@@ -52,9 +53,9 @@ public class AppState {
 			router.addMenu(new DashboardMenu(consoleReader, router, userService));
 			
 			//in bank menu
-			router.addMenu(new BankMenu(consoleReader, router));
+			router.addMenu(new ProfileMenu(consoleReader, router, userService));
 			router.addMenu(new BankCreationMenu(consoleReader, router, bankService));
-			//router.addMenu(new Ban);
+			router.addMenu(new ViewMyBank(consoleReader, router, bankService, userService));
 			
 			logger.log("Application initiliazed!");
 			

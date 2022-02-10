@@ -24,17 +24,20 @@ public class UserDAO implements CrudDAO<User> {
 			
 			
 				newUser.setUserId(UUID.randomUUID().toString());
+				
+				System.out.println(newUser.getUserId());
 			
 				String sql = "insert into users (user_id, first_name, last_name, email, username, password) values (?, ?, ?, ?, ?, ?)";
 			
 				PreparedStatement ps = conn.prepareStatement(sql);
 				
-				ps.setString(1, newUser.getId());
+				ps.setString(1, newUser.getUserId());
 				ps.setString(2, newUser.getFirstName());
 				ps.setString(3, newUser.getLastName());
 				ps.setString(4, newUser.getEmail());
 				ps.setString(5, newUser.getUsername());
 				ps.setString(6, newUser.getPassword());
+				
 				
 				
 				//used to execute
@@ -69,7 +72,7 @@ public class UserDAO implements CrudDAO<User> {
 	
 				while (rs.next()) {
 					User user = new User();
-					//user.setUserId(rs.getString("user_id"));
+					user.setUserId(rs.getString("user_id"));
 					user.setFirstName(rs.getString("first_name"));
 					user.setLastName(rs.getString("last_name"));
 					user.setEmail(rs.getString("email"));
@@ -126,7 +129,7 @@ public class UserDAO implements CrudDAO<User> {
 	
 				while (rs.next()) {
 					User user = new User();
-					//user.setUserId(rs.getString("user_id"));
+					user.setUserId(rs.getString("user_id"));
 					user.setFirstName(rs.getString("first_name"));
 					user.setLastName(rs.getString("last_name"));
 					user.setEmail(rs.getString("email"));
@@ -143,6 +146,36 @@ public class UserDAO implements CrudDAO<User> {
 	
 			return null;
 			
+		}
+		
+		public User findByUserId(String userId) {
+			try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
+				
+				String sql = "select * from customers where user_id = ?";
+				
+				PreparedStatement ps = conn.prepareStatement(sql);
+				
+				ps.setString(1, userId);
+				
+				ResultSet rs = ps.executeQuery();
+				
+				while(rs.next()) {
+					User user = new User();
+					
+					user.setUserId(rs.getString("user_id"));
+					user.setFirstName(rs.getString("first_name"));
+					user.setLastName(rs.getString("last_name"));
+					user.setEmail(rs.getString("email"));
+					user.setUsername(rs.getString("username"));
+					user.setPassword(rs.getString("password"));
+	
+					return user;
+				}
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+			
+			return null;
 		}
 	
 		@Override

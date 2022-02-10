@@ -47,7 +47,7 @@ public class DashboardMenu extends Menu{
 		switch (userSelection) {
 		case "1":
 			System.out.println("View profile selected");
-			router.transfer("/bank");
+			router.transfer("/viewprofile");
 			break;
 		case "2":
 			System.out.println("Create Account Selected");

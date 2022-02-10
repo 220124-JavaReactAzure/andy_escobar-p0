@@ -28,6 +28,7 @@ public class BankCreationMenu extends Menu {
 		System.out.println("2 - Starting Balance");
 		String bankBalance = consoleReader.readLine();
 		
+		
 		Double balance = Double.parseDouble(bankBalance);
 		
 		Bank newBank = new Bank(bankType, balance);

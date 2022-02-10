@@ -20,18 +20,40 @@ public class User {
 
 
 	public User(String firstName, String lastName, String email, String username, String password) {
-		// TODO Auto-generated constructor stub
+	
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.password = password;
 		this.email = email;
 		this.username = username;
+		this.password = password;
 		
 	}
+	
+	public User(String userId, String firstName, String lastName, String email, String username, String password) {
+		
+		super();
+		this.userId = userId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.username = username;
+		this.password = password;
+		
+	}
+	
+	
 
 
 	//getters and setters
+	
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	
 	public String getFirstName() {
 		return firstName;
 	}
@@ -64,12 +86,7 @@ public class User {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public String getId() {
-		return userId;
-	}
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
+
 	
 	
 	//hashcode and equals methods
@@ -89,7 +106,7 @@ public class User {
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
-//		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
+		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
